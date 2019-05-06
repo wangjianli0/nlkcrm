@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.deepcoding.dao.CommissionDao">
+<sql id="sql">
+		from comp_commission_ratio ccr inner join comp_business_category cbc on ccr.type=cbc.code
+		where 1=1
+		
+	</sql>
+	<select id="findCommissions" resultType="cn.deepcoding.model.Commission">
+		select ccr.id,ccr.area_id areaId,ccr.area_name areaName,ccr.type,cbc.name as category,
+		ccr.rule,ccr.min_num minNum,ccr.max_num maxNum,
+		ccr.ratio_company ratioCompany,ccr.ratio_custom ratioCustom,
+		ccr.created_datetime createdDatetime,ccr.updated_datetime updatedDatetime
+		<include refid="sql"/>
+	</select>
+	
+	<insert id="addComm"  parameterType="cn.deepcoding.model.Commission">
+		insert into comp_commission_ratio(
+			
+			area_name,
+			type,
+			rule,
+			min_num,
+			max_num,
+			ratio_company,
+			ratio_custom
+		)values(
+		
+			#{areaName},
+			#{type},
+			#{rule},
+			#{minNum},
+			#{maxNum},
+			#{ratioCompany},
+			#{ratioCustom}
+		)
+			
+		
+	</insert>
+	
+	<delete id="delCommission">
+		delete from comp_commission_ratio
+		where id = #{id}
+	
+	</delete>
+</mapper>
+
+
+
+
+
+
+
+
+

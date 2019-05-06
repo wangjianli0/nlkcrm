@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.deepcoding.dao.BusinessCategoryDao">
+	
+	<!-- 查看所有的业务类型 -->
+	<select id="findBusinessCategorys" resultType="BusinessCategory">
+		select * from comp_business_category
+	</select>
+	
+	<!-- 增加业务类别 -->
+	<select id="addBC" parameterType="BusinessCategory">
+		insert into comp_business_category	
+	</select>
+
+</mapper>
